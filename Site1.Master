@@ -1,0 +1,675 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site1.master.cs" Inherits="JamesArticleApp.Site1" %>
+
+<!DOCTYPE html>
+
+<html>
+    <head runat="server">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Dashboard | Yumi's Article System</title>
+        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+        <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css" />
+        <link rel="icon" type="image/x-icon" href="/Images/favicon.png" />
+        <link href="Scripts/custom/css/step_progressbar.css" rel="stylesheet" />
+        <link rel="stylesheet" href="bower_components/Ionicons/css/ionicons.min.css" />
+        <link href="Scripts/countrycode_picker/build/css/intlTelInput.css" rel="stylesheet" />
+        <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
+        <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
+        <link rel="stylesheet" href="bower_components/morris.js/morris.css">
+        <link rel="stylesheet" href="bower_components/jvectormap/jquery-jvectormap.css">
+        <link rel="stylesheet" href="bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
+        <link rel="stylesheet" href="bower_components/bootstrap-daterangepicker/daterangepicker.css">
+        <link rel="stylesheet" href="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+        <link href="Scripts/custom/css/bootstrap_checkboxes.css" rel="stylesheet" />
+        <link href="Scripts/datatable/css/jquery.dataTables.min.css" rel="stylesheet" />
+
+ 
+        <link href="https://cdn.datatables.net/buttons/1.7.0/css/buttons.dataTables.min.css" rel="stylesheet" />
+        <link href="Scripts/vertical_tab/css/vertical_tab.css" rel="stylesheet" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="Scripts/notify/bootstrap-notify.min.js"></script>
+        <link href="Scripts/custom/css/animate.min.css" rel="stylesheet" />
+        <link href="Scripts/custom/css/bootstrap.min.css" rel="stylesheet" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+        <link href="Scripts/fontawesome-free-5.13.0-web/css/all.css" rel="stylesheet" />
+        <link href="Scripts/custom/css/common.css" rel="stylesheet" />
+        <script>document.write('<script src="Scripts/custom/js/custom-session.js?v=' + (new Date()).getTime() + '"\><\/script>');</script>
+        <script>document.write('<script src="Scripts/custom/js/common.js?v=' + (new Date()).getTime() + '"\><\/script>');</script>
+
+
+        <style>
+            .button__badge {
+                background-color: #fa3e3e;
+                border-radius: 2px;
+                color: white;
+                padding: 1px 2px;
+                font-size: 11px;
+                position: absolute;
+                top: -23px;
+                right: -11px;
+                width: 17px;
+                text-align: center;
+            }
+
+            .shake {
+                transform: translate3d(0, 0, 0);
+                backface-visibility: hidden;
+                animation-name: shakeMe;
+                animation-duration: 5s;
+                animation-iteration-count: infinite;
+                animation-timing-function: linear;
+            }
+
+            @keyframes shakeMe {
+                2%, 18% {
+                    transform: translate3d(-5px, 0, 0);
+                }
+
+                4%, 16% {
+                    transform: translate3d(2px, 0, 0);
+                }
+
+                6%, 10%, 14% {
+                    transform: translate3d(-2px, 0, 0);
+                }
+
+                8%, 12% {
+                    transform: translate3d(2px, 0, 0);
+                }
+
+                18.1% {
+                    transform: translate3d(0px, 0, 0);
+                }
+            }
+
+            .stylish {
+                background-color: #76b1da; /*#64a1c5*/
+                transition: background-color 4s;
+            }
+
+            .fa-spin {
+                -webkit-animation: fa-spin 1s infinite linear;
+                animation: fa-spin 1s infinite linear;
+            }
+
+
+            .avatar-upload {
+                position: relative;
+                max-width: 150px;
+                /*       margin: 50px auto;*/
+                margin-left: 60px;
+            }
+
+                .avatar-upload .avatar-edit {
+                    position: absolute;
+                    right: 12px;
+                    z-index: 1;
+                    top: 10px;
+                }
+
+                    .avatar-upload .avatar-edit input {
+                        display: none;
+                    }
+
+                        .avatar-upload .avatar-edit input + label {
+                            display: inline-block;
+                            width: 34px;
+                            height: 34px;
+                            margin-bottom: 0;
+                            border-radius: 100%;
+                            background: #FFFFFF;
+                            line-height: 15px;
+                            border: 1px solid transparent;
+                            box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
+                            cursor: pointer;
+                            font-weight: normal;
+                            transition: all 0.2s ease-in-out;
+                        }
+
+                            .avatar-upload .avatar-edit input + label:hover {
+                                background: #f1f1f1;
+                                border-color: #d6d6d6;
+                            }
+
+                            .avatar-upload .avatar-edit input + label:after {
+                                content: "\f040";
+                                font-family: 'FontAwesome';
+                                color: #757575;
+                                position: absolute;
+                                top: 10px;
+                                left: 0;
+                                right: 0;
+                                text-align: center;
+                                margin: auto;
+                            }
+
+                .avatar-upload .avatar-preview {
+                    width: 130px;
+                    height: 130px;
+                    position: relative;
+                    border-radius: 100%;
+                    border: 6px solid #F8F8F8;
+                    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
+                }
+
+                    .avatar-upload .avatar-preview > div {
+                        width: 100%;
+                        height: 100%;
+                        border-radius: 100%;
+                        background-size: cover;
+                        background-repeat: no-repeat;
+                        background-position: center;
+                        background-color: white;
+                    }
+        </style>
+
+         <style>
+            .panel-shadow {
+                box-shadow: rgba(0, 0, 0, 0.3) 7px 7px 7px;
+            }
+
+            .panel-white {
+               /* border: 1px solid #dddddd;*/
+            }
+
+                .panel-white .panel-heading {
+                    color: #333;
+                    background-color: #fff;
+                    border-color: #ddd;
+                }
+
+                .panel-white .panel-footer {
+                    background-color: #fff;
+                    border-color: #ddd;
+                }
+
+            .post .post-heading {
+                height: 95px;
+                padding: 20px 15px;
+            }
+
+                .post .post-heading .avatar {
+                    width: 60px;
+                    height: 60px;
+                    display: block;
+                    margin-right: 15px;
+                }
+
+                .post .post-heading .meta .title {
+                    margin-bottom: 0;
+                }
+
+                    .post .post-heading .meta .title a {
+                        color: black;
+                    }
+
+                        .post .post-heading .meta .title a:hover {
+                            color: #aaaaaa;
+                        }
+
+                .post .post-heading .meta .time {
+                    margin-top: 8px;
+                    color: #999;
+                }
+
+            .post .post-image .image {
+                width: 100%;
+                height: auto;
+            }
+
+            .post .post-description {
+                padding: 15px;
+            }
+
+                .post .post-description p {
+                    font-size: 14px;
+                }
+
+                .post .post-description .stats {
+                    margin-top: 20px;
+                }
+
+                    .post .post-description .stats .stat-item {
+                        display: inline-block;
+                        margin-right: 15px;
+                    }
+
+                        .post .post-description .stats .stat-item .icon {
+                            margin-right: 8px;
+                        }
+
+            .post .post-footer {
+              /*  border-top: 1px solid #ddd;*/
+                padding: 15px;
+            }
+
+                .post .post-footer .input-group-addon a {
+                    color: #454545;
+                }
+
+                .post .post-footer .comments-list {
+                    padding: 0;
+                    margin-top: 20px;
+                    list-style-type: none;
+                }
+
+                    .post .post-footer .comments-list .comment {
+                        display: block;
+                        width: 100%;
+                        margin: 20px 0;
+                    }
+
+                        .post .post-footer .comments-list .comment .avatar {
+                            width: 35px;
+                            height: 35px;
+                        }
+
+                        .post .post-footer .comments-list .comment .comment-heading {
+                            display: block;
+                            width: 100%;
+                        }
+
+                            .post .post-footer .comments-list .comment .comment-heading .user {
+                                font-size: 12px;
+                                font-weight: bold;
+                                display: inline;
+                                margin-top: 0;
+                                margin-right: 10px;
+                            }
+
+                            .post .post-footer .comments-list .comment .comment-heading .time {
+                                font-size: 11px;
+                                color: #aaa;
+                                margin-top: 0;
+                                display: inline;
+                            }
+
+                        .post .post-footer .comments-list .comment .comment-body {
+                            margin-left: 50px;
+                        }
+
+                        .post .post-footer .comments-list .comment > .comments-list {
+                            margin-left: 50px;
+                        }
+        </style>
+        <style>
+            /* Page */
+
+            .container {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                margin-right: -50%;
+                transform: translate(-50%, -50%);
+                text-align: center;
+            }
+
+            .more-menu {
+                width: 100px;
+            }
+
+            /* More Button / Dropdown Menu */
+
+            .more-btn,
+            .more-menu-btn {
+                background: none;
+                border: 0 none;
+                line-height: normal;
+                overflow: visible;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                width: 6%;
+                text-align: left;
+                outline: none;
+                cursor: pointer;
+            }
+
+            .more-dot {
+                background-color: #aab8c2;
+                margin: 0 auto;
+                display: inline-block;
+                width: 7px;
+                height: 7px;
+                padding-left:8px;
+                margin-right: 1px;
+                border-radius: 50%;
+                transition: background-color 0.3s;
+            }
+
+            .more-menu {
+                position: absolute;
+                top: 86%;
+                left: 23%;
+                z-index: 900;
+                float: left;
+                padding: 10px 0;
+                margin-top: 9px;
+                background-color: #fff;
+                border: 1px solid #ccd8e0;
+                border-radius: 4px;
+                box-shadow: 1px 1px 3px rgba(0,0,0,0.25);
+                opacity: 0;
+                transform: translate(0, 15px) scale(.95);
+                transition: transform 0.1s ease-out, opacity 0.1s ease-out;
+                pointer-events: none;
+            }
+
+            .more-menu-caret {
+                position: absolute;
+                top: -10px;
+                left: 12px;
+                width: 18px;
+                height: 10px;
+                float: left;
+                overflow: hidden;
+            }
+
+            .more-menu-caret-outer,
+            .more-menu-caret-inner {
+                position: absolute;
+                display: inline-block;
+                margin-left: -1px;
+                font-size: 0;
+                line-height: 1;
+            }
+
+            .more-menu-caret-outer {
+                border-bottom: 10px solid #c1d0da;
+                border-left: 10px solid transparent;
+                border-right: 10px solid transparent;
+                height: auto;
+                left: 0;
+                top: 0;
+                width: auto;
+            }
+
+            .more-menu-caret-inner {
+                top: 1px;
+                left: 1px;
+                border-left: 9px solid transparent;
+                border-right: 9px solid transparent;
+                border-bottom: 9px solid #fff;
+            }
+
+            .more-menu-items {
+                margin: 0;
+                list-style: none;
+                padding: 0;
+            }
+
+            .more-menu-item {
+                display: block;
+            }
+
+            .more-menu-btn {
+                min-width: 100%;
+                color: #66757f;
+                cursor: pointer;
+                display: block;
+                font-size: 13px;
+                line-height: 18px;
+                padding: 5px 20px;
+                position: relative;
+                white-space: nowrap;
+            }
+
+            .more-menu-item:hover {
+                background-color: #489fe5;
+            }
+
+                .more-menu-item:hover .more-menu-btn {
+                    color: #fff;
+                }
+
+            .more-btn:hover .more-dot,
+            .show-more-menu .more-dot {
+                background-color: #516471;
+            }
+
+            .show-more-menu .more-menu {
+                opacity: 1;
+                transform: translate(0, 0) scale(1);
+                pointer-events: auto;
+            }
+
+            .autosize {
+      resize: none;
+      overflow: hidden;
+    }
+        </style>
+    </head>
+
+    <body class="hold-transition skin-blue sidebar-mini " style="zoom: 90%" id="pageBody">
+        <div id="cover-spin"></div>
+
+        <div class="modal fade spinner" id="modalLoader" style="overflow-y: hidden; background: transparent; top: 30%">
+            <div class="rect1"></div>
+            <div class="rect2"></div>
+            <div class="rect3"></div>
+            <div class="rect4"></div>
+            <div class="rect5"></div>
+        </div>
+        <div class="wrapper">
+
+            <header class="main-header">
+                <nav class="navbar navbar-static-top">
+                    <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span style="padding-left: 20px; font-size: 16px; font-family: Calibri;"></span>
+                    </a>
+                    <div class="navbar-custom-menu">
+                        <ul class="nav navbar-nav">
+                            <li class="dropdown user user-menu">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="fa fa-user mobile-indicator2"></i>
+                                    <span class="hidden-xs" id="currentUserName"></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li class="user-header">
+                                        <div class="avatar-upload">
+                                            <div class="avatar-edit">
+                                                <input type='button' id="photoUploader" hidden />
+                                                <label for="photoUploader"></label>
+                                            </div>
+                                            <div class="avatar-preview">
+                                                <div id="imagePreview">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <p id="logOutUserName">
+                                        </p>
+                                    </li>
+                                    <li class="user-footer">
+                                        <div class="pull-left">
+                                            <a id="btnChangePassword" style="font-size: 14px" href="#" class="btn btn-default btn-flat">Change Password</a>
+                                        </div>
+                                        <div class="pull-right">
+                                            <a id="btnLogOut" style="font-size: 14px" href="#" class="btn btn-default btn-flat">Sign out</a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+
+                        </ul>
+                    </div>
+                </nav>
+            </header>
+
+
+
+            <div class="modal" id="modalSession" data-backdrop="static" data-keyboard="false">
+                <div class="modal-dialog modal-sm" style="width: 350px">
+                    <div class="modal-content">
+
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <span class="modal-title" style="font-size: 14px">Session Timeout</span>
+                        </div>
+
+                        <!-- Modal body -->
+                        <div class="modal-body" style="font-family: Arial">
+                            <span>Your session is about to expire!  </span>
+                            <br />
+                            <span>You will be logged out in <span id="sessionTimer" style="color: black; font-weight: 700; font-size: 18px">50</span> seconds</span>.
+                        <br />
+                            <span>Do you want to stay signed in?</span>
+
+                        </div>
+
+                        <!-- Modal footer -->
+                        <div class="modal-footer" style="font-size: 12px; margin-top: 0px">
+                            <button id="btnSessionStayIn" style="font-size: 12px" type="button" class="btn btn-primary" data-dismiss="modal">Yes, Keep me signed in</button>
+                            <button id="btnSessionOut" style="font-size: 12px" type="button" class="btn btn-danger" data-dismiss="modal">No, Sign me out</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="modalChangePassword">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <span class="modal-title">
+                                <h4>Change Password</h4>
+                            </span>
+                        </div>
+
+                        <!-- Modal body -->
+                        <div class="modal-body" style="font-family: Calibri">
+                            <div class="row" style="padding: 15px">
+                                <div class="col-sm-12">
+                                    Current Password
+                                <input type="password" class="form-control" id="currentPassword" value="" />
+                                </div>
+                                <div class="col-sm-12" style="padding-top: 15px">
+                                    New Password
+                                <input type="password" class="form-control" id="newPassword" value="" />
+                                </div>
+                                <div class="col-sm-12" style="padding-top: 15px">
+                                    Confirm New Password
+                                <input type="password" class="form-control" id="confirmNewPassword" value="" />
+                                </div>
+                                 <div class="col-sm-12" style="padding-top: 15px">
+                                    <span>Password should be 8 characters long, with upper and lower case letters, and contain at least 1 number or special character (~`!@#$%^&*()-_+={}[]|\;:"<>,./?)</span>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- Modal footer -->
+                        <div class="modal-footer" style="font-size: 14px">
+                            <button id="btnCancel" style="font-size: 14px" type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                            <button id="btnOk" style="font-size: 14px" type="button" class="btn btn-default">Ok</button>
+
+                        </div>
+                        <div style="text-align: left; padding: 10px">
+                            <span id="changePasswordErrorMsg" style="color: red; font-size: 14px" hidden></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="main" class="container-fluid">
+                <div class="row">
+                    <div id="content" class="col-xs-12 col-sm-12" style="flex-direction: column; min-height: 100vh; padding-left: 0px; padding-right: 0px">
+                        <aside class="main-sidebar">
+                            <section class="sidebar">
+
+                                <div class="user-panel container-fluid">
+                                    
+                                   <img id="sidebarPhoto" src="Images/logo.jpg" style="background-color: white; width: 210px;" class="img-fluid" alt="User Image">
+                                </div>
+
+                                <ul class="sidebar-menu" data-widget="tree" id="menuLust" style="margin-top: 23px">
+                                    
+                                </ul>
+                            </section>
+
+
+                        </aside>
+                        <aside class="control-sidebar control-sidebar-dark" style="width: 430px; display: none; padding-top: 0px; flex-direction: column; min-height: 100%;">
+                            <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane" id="control-sidebar-home-tab">
+                                </div>
+                            </div>
+                        </aside>
+                        <div class="content-wrapper">
+                            <section class="content">
+
+                                <section class="userButtons" style="padding-left: 0px; font-family: Calibri; padding-right: 0px;">
+                                    <div class="row">
+
+                                    </div>
+
+                                </section>
+                                <asp:ContentPlaceHolder runat="server" ID="MainContent" ClientIDMode="Static" />
+                            </section>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <div class="modal fade" id="modalPhotoUploader" role="dialog">
+            <div class="modal-dialog modal-sm" style="width: 450px">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Change your profile picture</h4>
+                    </div>
+                    <div class="modal-body">
+                        <%--        <p>Some text in the modal.</p>--%>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="col-sm-12" style="padding-top: 60px; padding-left: 50px">
+                                    <input hidden type="file" id="btnUploadPhotoBrowser" name="img" style="display: none" accept="image/png, image/jpeg">
+                                    <a id="btnUploadPhoto" href="#" style="font-size: 15px"><i class="fa fa-image"></i>&nbsp;  Upload picture</a>
+                                </div>
+                                
+                                <div class="col-sm-12" style="padding-top: 20px; padding-left: 50px">
+                                    <a id="btnRemovePhoto" href="#" style="font-size: 15px"><i class="fa fa-trash-alt"></i>&nbsp; Remove picture</a>
+                                </div>
+                            </div>
+                            <div class="col-sm-6" style="padding-left: 0px">
+                                <div class="avatar-upload" style="margin-left: 0px">
+                                    <div style="width: 200px; height: 200px" class="avatar-preview">
+                                        <div id="userPhotoModal">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <script src="Scripts/datatable/js/jquery.dataTables.min.js"></script>
+
+        <script src="Scripts/datatable/js/dataTables.buttons.min.js"></script>
+        <script src="Scripts/datatable/js/jszip.min.js"></script>
+        <script src="Scripts/datatable/js/vfs_fonts.js"></script>
+        <script src="Scripts/datatable/js/buttons.html5.min.js"></script>
+        <script src="Scripts/datatable/js/buttons.print.min.js"></script>
+
+        <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="dist/js/demo.js"></script>
+        <script src="dist/js/adminlte.min.js"></script>
+        <link href="Scripts/select2_v4/css/select2.min.css" rel="stylesheet" />
+        <script src="Scripts/select2_v4/js/load.min.js"></script>
+        <script src="Scripts/select2_v4/js/select2.min.js"></script>
+        <script src="Scripts/countrycode_picker/build/js/intlTelInput.js"></script>
+    </body>
+
+</html>
